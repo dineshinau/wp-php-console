@@ -18,21 +18,22 @@ defined( 'ABSPATH' ) or exit;
 /**
  * Gets the WP PHP Console instance.
  *
+ * @return WP_PHP_Console\Plugin
  * @since 1.5.4
  *
- * @return WP_PHP_Console\Plugin
  */
 function wp_php_console() {
 
 	return new \WP_PHP_Console\Plugin();
 }
+
 /**
  * @param $data
  * @param null $tags
  * @param int $ignoreTraceCalls
  */
-function dk_pc_debug( $data, $tags = null, $ignoreTraceCalls = 0 ) {
-	if (!class_exists('PC')){
+function dkpcd( $data, $tags = null, $ignoreTraceCalls = 0 ) {
+	if ( ! class_exists( 'PC' ) ) {
 		PhpConsole\Helper::register();
 	}
 	PC::debug( $data, $tags, $ignoreTraceCalls );
