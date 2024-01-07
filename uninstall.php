@@ -1,6 +1,6 @@
 <?php
 /**
- * WP PHP Console
+ * WP PHP Console.
  *
  * This source file is subject to the GNU General Public License v3.0
  * that is bundled with this package in the file license.txt.
