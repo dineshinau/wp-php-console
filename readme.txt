@@ -130,6 +130,15 @@ None.
 
 == Changelog ==
 
+= 9.9.11 (2023-12-28) =
+ * Fixed: Notice with setcookie method expire parameter on php-8.3 instances.
+
+ = 9.9.10 (2023-11-28) =
+ * Fixed: Compatibility notices with php 8.1 and php 8.2
+
+= 9.9.9 =
+ * Added: wppcd function to debug variables.
+
 = 1.6.0 =
  * Misc: Add note about Chrome extension unavailability in web store
  * Misc: Add plugin admin action links

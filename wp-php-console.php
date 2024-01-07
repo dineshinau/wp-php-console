@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:  WP PHP Console (Forked for dkpcd function)
+ * Plugin Name:  WP PHP Console (Forked for wppcd)
  * Plugin URI:   https://github.com/unfulvio/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
  *
- * Version:      9.9.0
+ * Version:      9.9.11
  *
  * Author:       Fulvio Notarstefano
  * Author URI:   https://github.com/unfulvio/
@@ -47,7 +47,7 @@ defined( 'ABSPATH' ) or exit;
  *
  * @since 1.5.4
  */
-class WP_PHP_Console_Loader {
+class WP_PHP_Console_Loader{
 
 
 	/** minimum PHP version required by this plugin */
@@ -74,10 +74,10 @@ class WP_PHP_Console_Loader {
 	 */
 	protected function __construct() {
 
-		register_activation_hook( __FILE__, array( $this, 'activation_check' ) );
+		register_activation_hook(__FILE__, array( $this, 'activation_check' ) );
 
-		add_action( 'admin_init',    array( $this, 'check_environment' ) );
-		add_action( 'admin_init',    array( $this, 'add_plugin_notices' ) );
+		add_action( 'admin_init', array( $this, 'check_environment' ) );
+		add_action( 'admin_init', array( $this, 'add_plugin_notices' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ), 15 );
 
 		// if the environment check fails, initialize the plugin
@@ -179,12 +179,17 @@ class WP_PHP_Console_Loader {
 
 		if ( ! $this->is_wp_compatible() ) {
 
-			$this->add_admin_notice( 'update_wordpress', 'error', sprintf(
-				'%s requires WordPress version %s or higher. Please %supdate WordPress &raquo;%s',
-				'<strong>' . self::PLUGIN_NAME . '</strong>',
-				self::MINIMUM_WP_VERSION,
-				'<a href="' . esc_url( admin_url( 'update-core.php' ) ) . '">', '</a>'
-			) );
+			$this->add_admin_notice(
+				'update_wordpress',
+				'error',
+				sprintf(
+					'%s requires WordPress version %s or higher. Please %supdate WordPress &raquo;%s',
+					'<strong>' . self::PLUGIN_NAME . '</strong>',
+					self::MINIMUM_WP_VERSION,
+					'<a href="' . esc_url( admin_url( 'update-core.php' ) ) . '">',
+					'</a>'
+				)
+			);
 		}
 	}
 
@@ -231,7 +236,7 @@ class WP_PHP_Console_Loader {
 
 		$this->notices[ $slug ] = array(
 			'class'   => $class,
-			'message' => $message
+			'message' => $message,
 		);
 	}
 
@@ -244,9 +249,7 @@ class WP_PHP_Console_Loader {
 	 * @since 1.5.4
 	 */
 	public function admin_notices() {
-
-		foreach ( (array) $this->notices as $notice_key => $notice ) :
-
+		foreach ( (array) $this->notices as $notice ) :
 			?>
 			<div class="<?php echo esc_attr( $notice['class'] ); ?>">
 				<p><?php echo wp_kses( $notice['message'], array( 'a' => array( 'href' => array() ) ) ); ?></p>
