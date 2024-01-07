@@ -27,13 +27,13 @@ class Plugin {
 
 
 	/** @var string plugin version */
-	CONST VERSION = '1.6.0';
+	const VERSION = '1.6.0';
 
 	/** @var string plugin ID */
-	CONST ID = 'wp-php-console';
+	const ID = 'wp-php-console';
 
 	/** @var string plugin name */
-	CONST NAME = 'WP PHP Console';
+	const NAME = 'WP PHP Console';
 
 
 	/** @var PhpConsole\Connector instance */
@@ -49,26 +49,29 @@ class Plugin {
 
 		@error_reporting( E_ALL );
 
-		foreach ( [ 'WP_DEBUG',	'WP_DEBUG_LOG', 'WP_DEBUG_DISPLAY', ] as $wp_debug_constant ) {
+		foreach ( array( 'WP_DEBUG', 'WP_DEBUG_LOG', 'WP_DEBUG_DISPLAY' ) as $wp_debug_constant ) {
 			if ( ! defined( $wp_debug_constant ) ) {
-				define ( $wp_debug_constant, true );
+				define( $wp_debug_constant, true );
 			}
 		}
 
 		// handle translations
-		add_action( 'plugins_loaded', static function() {
-			load_plugin_textdomain(
-				'wp-php-console',
-				false,
-				dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-			);
-		} );
+		add_action(
+			'plugins_loaded',
+			static function () {
+				load_plugin_textdomain(
+					'wp-php-console',
+					false,
+					dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+				);
+			} 
+		);
 
 		if ( class_exists( 'PhpConsole\Connector' ) ) {
 			// connect to PHP Console
-			add_action( 'init',      [ $this, 'connect' ], -1000 );
+			add_action( 'init', array( $this, 'connect' ), -1000 );
 			// delay further PHP Console initialisation to have more context during Remote PHP execution
-			add_action( 'wp_loaded', [ $this, 'init' ], -1000 );
+			add_action( 'wp_loaded', array( $this, 'init' ), -1000 );
 		}
 
 		// load admin
@@ -82,6 +85,7 @@ class Plugin {
 	 * Connects to PHP Console.
 	 *
 	 * PHP Console needs to hook in session, in WordPress we need to be in 'init':
+	 *
 	 * @link http://silvermapleweb.com/using-the-php-session-in-wordpress/
 	 *
 	 * @internal action hook callback
@@ -134,7 +138,7 @@ class Plugin {
 			// ...only if PC not registered yet
 			try {
 				PhpConsole\Helper::register();
-			} catch( \Exception $e ) {
+			} catch ( \Exception $e ) {
 				$this->print_notice_exception( $e );
 			}
 		}
@@ -184,7 +188,7 @@ class Plugin {
 				$this->connector = PhpConsole\Connector::getInstance();
 				$connected       = true;
 			} catch ( \Exception $e ) {
-				$connected       = false;
+				$connected = false;
 			}
 
 			// restore error reporting
@@ -208,7 +212,7 @@ class Plugin {
 		if ( true !== PhpConsole\Handler::getInstance()->isStarted() ) {
 			try {
 				$handler->start();
-			} catch( \Exception $e ) {
+			} catch ( \Exception $e ) {
 				$this->print_notice_exception( $e );
 				return;
 			}
@@ -240,7 +244,7 @@ class Plugin {
 			$this->print_notice_exception( $e );
 		}
 
-		$openBaseDirs = [ ABSPATH, get_template_directory() ];
+		$openBaseDirs = array( ABSPATH, get_template_directory() );
 
 		try {
 			$evalProvider->addSharedVarReference( 'dirs', $openBaseDirs );
@@ -267,13 +271,16 @@ class Plugin {
 	 */
 	private function print_notice_exception( \Exception $e ) {
 
-		add_action( 'admin_notices', static function() use ( $e ) {
-			?>
+		add_action(
+			'admin_notices',
+			static function () use ( $e ) {
+				?>
 			<div class="error">
 				<p><?php printf( '%1$s: %2$s', self::NAME, $e->getMessage() ); ?></p>
 			</div>
-			<?php
-		} );
+				<?php
+			} 
+		);
 	}
 
 
@@ -390,6 +397,4 @@ class Plugin {
 
 		return 'https://github.com/barbushin/php-console-extension';
 	}
-
-
 }

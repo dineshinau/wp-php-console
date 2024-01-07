@@ -2,9 +2,10 @@
 Contributors: nekojira
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XSFHY4Y9AEH58&source=url
 Tags: dev, development, bug, debug, debugging, stacktrace, php, console, terminal, browser
-Requires at least: 3.6.0
-Requires PHP: 5.6
+Requires at least: 6.0
+Requires PHP: 7.4
 Tested up to: 5.5.3
+PHP up to: 8.3
 Stable tag: 1.6.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -120,19 +121,22 @@ or
 
   // send $my_var with tag 'my_tag' to the JavaScript console through PHP Console Server Library and PHP Console Chrome Plugin
   PC::my_tag( $my_var );
-
 `
 
 == Screenshots ==
 
 None.
 
-
 == Changelog ==
+
+= 9.9.12 (2024-01-07) =
+ * Updated: Pot file and Changelog.
+ * Ran PCPCBF to fix formating issues.
+ * Updated the cookie variable name with underscore instead of hypens to avoid notices with php 8 versions.
 
 = 9.9.11 (2023-12-28) =
  * Fixed: Notice with setcookie method expire parameter on php-8.3 instances.
-
+ 
  = 9.9.10 (2023-11-28) =
  * Fixed: Compatibility notices with php 8.1 and php 8.2
 

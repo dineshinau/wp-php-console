@@ -3,14 +3,9 @@
  * Plugin Name:  WP PHP Console (Forked for wppcd)
  * Plugin URI:   https://github.com/unfulvio/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
- *
- * Version:      9.9.11
- *
+ * Version:      9.9.12
  * Author:       Fulvio Notarstefano
  * Author URI:   https://github.com/unfulvio/
- *
- * License:      GPL-2.0+
- * License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
  *
  * Text Domain:  wp-php-console
  * Domain Path:  /languages
@@ -47,14 +42,12 @@ defined( 'ABSPATH' ) or exit;
  *
  * @since 1.5.4
  */
-class WP_PHP_Console_Loader{
-
-
+class WP_PHP_Console_Loader {
 	/** minimum PHP version required by this plugin */
-	const MINIMUM_PHP_VERSION = '5.6.0';
+	const MINIMUM_PHP_VERSION = '7.4';
 
 	/** minimum WordPress version required by this plugin */
-	const MINIMUM_WP_VERSION = '3.6.0';
+	const MINIMUM_WP_VERSION = '6.0';
 
 	/** the plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WP PHP Console';
@@ -66,7 +59,6 @@ class WP_PHP_Console_Loader{
 	/** @var array the admin notices to add */
 	protected $notices = array();
 
-
 	/**
 	 * Loads WP PHP Console after performing compatibility checks.
 	 *
@@ -74,7 +66,7 @@ class WP_PHP_Console_Loader{
 	 */
 	protected function __construct() {
 
-		register_activation_hook(__FILE__, array( $this, 'activation_check' ) );
+		register_activation_hook( __FILE__, array( $this, 'activation_check' ) );
 
 		add_action( 'admin_init', array( $this, 'check_environment' ) );
 		add_action( 'admin_init', array( $this, 'add_plugin_notices' ) );
@@ -86,17 +78,14 @@ class WP_PHP_Console_Loader{
 		}
 	}
 
-
 	/**
 	 * Cloning instances is forbidden due to singleton pattern.
 	 *
 	 * @since 1.5.4
 	 */
 	public function __clone() {
-
 		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot clone instances of %s.', get_class( $this ) ), '1.5.4' );
 	}
-
 
 	/**
 	 * Unserializing instances is forbidden due to singleton pattern.
@@ -104,10 +93,8 @@ class WP_PHP_Console_Loader{
 	 * @since 1.5.4
 	 */
 	public function __wakeup() {
-
 		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot unserialize instances of %s.', get_class( $this ) ), '1.5.4' );
 	}
-
 
 	/**
 	 * Initializes the plugin.
@@ -117,7 +104,6 @@ class WP_PHP_Console_Loader{
 	 * @since 1.5.4
 	 */
 	private function init_plugin() {
-
 		// autoload plugin and vendor files
 		$loader = require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
@@ -140,15 +126,11 @@ class WP_PHP_Console_Loader{
 	 * @since 1.5.4
 	 */
 	public function activation_check() {
-
 		if ( ! $this->is_environment_compatible() ) {
-
 			$this->deactivate_plugin();
-
 			wp_die( self::PLUGIN_NAME . ' could not be activated. ' . $this->get_environment_message() );
 		}
 	}
-
 
 	/**
 	 * Checks the environment on loading WordPress, just in case the environment changes after activation.
@@ -158,11 +140,8 @@ class WP_PHP_Console_Loader{
 	 * @since 1.5.4
 	 */
 	public function check_environment() {
-
 		if ( ! $this->is_environment_compatible() && is_plugin_active( plugin_basename( __FILE__ ) ) ) {
-
 			$this->deactivate_plugin();
-
 			$this->add_admin_notice( 'bad_environment', 'error', self::PLUGIN_NAME . ' has been deactivated. ' . $this->get_environment_message() );
 		}
 	}
@@ -176,7 +155,6 @@ class WP_PHP_Console_Loader{
 	 * @since 1.5.4
 	 */
 	public function add_plugin_notices() {
-
 		if ( ! $this->is_wp_compatible() ) {
 
 			$this->add_admin_notice(

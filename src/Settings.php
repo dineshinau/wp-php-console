@@ -25,7 +25,7 @@ class Settings {
 
 
 	/** @var array settings options */
-	private static $options = [];
+	private static $options = array();
 
 
 	/**
@@ -53,15 +53,15 @@ class Settings {
 		if ( empty( self::$options ) ) {
 
 			self::$options = wp_parse_args(
-				(array) get_option( self::get_settings_key(), [] ),
-				[
+				(array) get_option( self::get_settings_key(), array() ),
+				array(
 					'ip'       => '',
 					'password' => '',
 					'register' => false,
 					'short'    => false,
 					'ssl'      => false,
 					'stack'    => false,
-				]
+				)
 			);
 		}
 
@@ -80,7 +80,7 @@ class Settings {
 
 		$allowed_ips = self::get_settings()['ip'];
 
-		return ! empty( $allowed_ips['ip'] ) ? explode( ',', $allowed_ips['ip'] ) : [];
+		return ! empty( $allowed_ips['ip'] ) ? explode( ',', $allowed_ips['ip'] ) : array();
 	}
 
 
@@ -162,6 +162,4 @@ class Settings {
 
 		return ! empty( self::get_settings()['short'] );
 	}
-
-
 }
