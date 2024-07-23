@@ -4,9 +4,9 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: dev, development, bug, debug, debugging, stacktrace, php, console, terminal, browser
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 5.5.3
+Tested up to: 6.6
 PHP up to: 8.3
-Stable tag: 1.6.0
+Stable tag: 9.9.13
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,10 +19,9 @@ Use Chrome Dev Tools to debug your WordPress installation!
 
 This implementation of PHP Console is a handy tool to make it easier to test on the fly any WordPress specific function or class (including those introduced by your active theme and plugins!) from a terminal and inspect results, catch errors and warnings with complete call stack trace straight from the Chrome JavaScript console. In other words, besides debugging, you can execute PHP or WordPress-specific PHP code straight from the terminal and print PHP variables in Chrome Dev Tools JavaScript console along with your normal JavaScript debugging and testing. Keep everything in one place, without leaving the browser to check for your logs or writing temporary PHP test code on a PHP file and refresh your browser page.
 
-Note: PHP version 5.6.0 or above is required to use this plugin.
+Note: PHP version 7.4 or above is required to use this plugin.
 
 For support and pull requests, please refer to [WP PHP Console GitHub repo](https://github.com/unfulvio/wp-php-console) and read the instructions there - thank you.
-
 
 == Installation ==
 
@@ -129,6 +128,9 @@ None.
 
 == Changelog ==
 
+= 9.9.13 (2024-05-09) =
+Renamed: wppcd function to wpd for simplicity.
+
 = 9.9.12 (2024-01-07) =
  * Updated: Pot file and Changelog.
  * Ran PCPCBF to fix formating issues.
@@ -136,7 +138,7 @@ None.
 
 = 9.9.11 (2023-12-28) =
  * Fixed: Notice with setcookie method expire parameter on php-8.3 instances.
- 
+
  = 9.9.10 (2023-11-28) =
  * Fixed: Compatibility notices with php 8.1 and php 8.2
 

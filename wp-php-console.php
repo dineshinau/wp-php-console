@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:  WP PHP Console (Forked for wppcd)
+ * Plugin Name:  WP PHP Console (Forked for wpd)
  * Plugin URI:   https://github.com/unfulvio/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
- * Version:      9.9.12
+ * Version:      9.9.13
  * Author:       Fulvio Notarstefano
  * Author URI:   https://github.com/unfulvio/
  *
@@ -115,7 +115,6 @@ class WP_PHP_Console_Loader {
 		wp_php_console();
 	}
 
-
 	/**
 	 * Checks the server environment and other factors and deactivates plugins as necessary.
 	 *
@@ -146,7 +145,6 @@ class WP_PHP_Console_Loader {
 		}
 	}
 
-
 	/**
 	 * Adds notices for out-of-date WordPress and/or WooCommerce versions.
 	 *
@@ -156,7 +154,6 @@ class WP_PHP_Console_Loader {
 	 */
 	public function add_plugin_notices() {
 		if ( ! $this->is_wp_compatible() ) {
-
 			$this->add_admin_notice(
 				'update_wordpress',
 				'error',
@@ -171,7 +168,6 @@ class WP_PHP_Console_Loader {
 		}
 	}
 
-
 	/**
 	 * Determines if the plugin is WordPress compatible.
 	 *
@@ -181,10 +177,8 @@ class WP_PHP_Console_Loader {
 	 */
 	private function is_wp_compatible() {
 		global $wp_version;
-
 		return version_compare( $wp_version, self::MINIMUM_WP_VERSION, '>=' );
 	}
-
 
 	/**
 	 * Deactivates the plugin.
@@ -192,14 +186,12 @@ class WP_PHP_Console_Loader {
 	 * @since 1.5.4
 	 */
 	private function deactivate_plugin() {
-
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
 		}
 	}
-
 
 	/**
 	 * Adds an admin notice to be displayed.
@@ -211,13 +203,11 @@ class WP_PHP_Console_Loader {
 	 * @param string $message message content
 	 */
 	private function add_admin_notice( $slug, $class, $message ) {
-
 		$this->notices[ $slug ] = array(
 			'class'   => $class,
 			'message' => $message,
 		);
 	}
-
 
 	/**
 	 * Displays admin notices.
@@ -233,10 +223,8 @@ class WP_PHP_Console_Loader {
 				<p><?php echo wp_kses( $notice['message'], array( 'a' => array( 'href' => array() ) ) ); ?></p>
 			</div>
 			<?php
-
 		endforeach;
 	}
-
 
 	/**
 	 * Determines if the server environment is compatible with this plugin.
@@ -246,10 +234,8 @@ class WP_PHP_Console_Loader {
 	 * @return bool
 	 */
 	private function is_environment_compatible() {
-
 		return version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '>=' );
 	}
-
 
 	/**
 	 * Returns the message for display when the environment is incompatible with this plugin.
@@ -259,10 +245,8 @@ class WP_PHP_Console_Loader {
 	 * @return string
 	 */
 	private function get_environment_message() {
-
 		return sprintf( 'The minimum PHP version required for this plugin is %1$s. You are running %2$s.', self::MINIMUM_PHP_VERSION, PHP_VERSION );
 	}
-
 
 	/**
 	 * Returns the main \WP_PHP_Console_Loader instance.

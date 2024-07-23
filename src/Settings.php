@@ -6,10 +6,6 @@
  * that is bundled with this package in the file license.txt.
  * It is also available through the world-wide-web at this URL:
  * http://www.gnu.org/licenses/gpl-3.0.html
- *
- * @author    Fulvio Notarstefano <fulvio.notarstefano@gmail.com>
- * @copyright Copyright (c) 2014-2020 Fulvio Notarstefano
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
 namespace WP_PHP_Console;
@@ -22,11 +18,8 @@ defined( 'ABSPATH' ) or exit;
  * @since 1.5.0
  */
 class Settings {
-
-
 	/** @var array settings options */
 	private static $options = array();
-
 
 	/**
 	 * Gets the settings option key.
@@ -36,10 +29,8 @@ class Settings {
 	 * @return string
 	 */
 	public static function get_settings_key() {
-
 		return str_replace( '-', '_', Plugin::ID );
 	}
-
 
 	/**
 	 * Gets the plugin settings.
@@ -49,9 +40,7 @@ class Settings {
 	 * @return array associative array of key-values
 	 */
 	public static function get_settings() {
-
 		if ( empty( self::$options ) ) {
-
 			self::$options = wp_parse_args(
 				(array) get_option( self::get_settings_key(), array() ),
 				array(
@@ -68,7 +57,6 @@ class Settings {
 		return self::$options;
 	}
 
-
 	/**
 	 * Gets the restricted IP(s), if set.
 	 *
@@ -77,12 +65,10 @@ class Settings {
 	 * @return string[] array of individual IPs or ranges of IPs
 	 */
 	public static function get_allowed_ip_masks() {
-
 		$allowed_ips = self::get_settings()['ip'];
 
 		return ! empty( $allowed_ips['ip'] ) ? explode( ',', $allowed_ips['ip'] ) : array();
 	}
-
 
 	/**
 	 * Gets the PHP Console terminal password.
@@ -92,10 +78,8 @@ class Settings {
 	 * @return string
 	 */
 	public static function get_eval_terminal_password() {
-
 		return self::get_settings()['password'];
 	}
-
 
 	/**
 	 * Determines whether a password exists and is not empty.
@@ -105,12 +89,10 @@ class Settings {
 	 * @return bool
 	 */
 	public static function has_eval_terminal_password() {
-
 		$password = self::get_eval_terminal_password();
 
 		return is_string( $password ) && '' !== trim( $password );
 	}
-
 
 	/**
 	 * Determines whether the PC class should be registered and made available.
@@ -120,10 +102,8 @@ class Settings {
 	 * @return bool
 	 */
 	public static function should_register_pc_class() {
-
 		return ! empty( self::get_settings()['register'] );
 	}
-
 
 	/**
 	 * Determines whether PHP Console should only accept secure connections.
@@ -133,10 +113,8 @@ class Settings {
 	 * @return bool
 	 */
 	public static function should_use_ssl_only() {
-
 		return ! empty( self::get_settings()['ssl'] );
 	}
-
 
 	/**
 	 * Determines whether the full call stack should be displayed.
@@ -146,10 +124,8 @@ class Settings {
 	 * @return bool
 	 */
 	public static function should_show_call_stack() {
-
 		return ! empty( self::get_settings()['stack'] );
 	}
-
 
 	/**
 	 * Determines whether the length of PHP Console error sources should be shortened.
@@ -159,7 +135,6 @@ class Settings {
 	 * @return bool
 	 */
 	public static function should_use_short_path_names() {
-
 		return ! empty( self::get_settings()['short'] );
 	}
 }
