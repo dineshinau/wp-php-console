@@ -10,7 +10,6 @@
 
 defined( 'ABSPATH' ) or exit;
 
-
 /**
  * Gets the WP PHP Console instance.
  *

@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) or exit;
  */
 class Plugin {
 	/** @var string plugin version */
-	const VERSION = '1.6.0';
+	const VERSION = '9.9.15';
 
 	/** @var string plugin ID */
 	const ID = 'wp-php-console';
@@ -49,12 +49,12 @@ class Plugin {
 
 		// handle translations
 		add_action(
-			'plugins_loaded',
+			'init',
 			static function () {
 				load_plugin_textdomain(
 					'wp-php-console',
 					false,
-					dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+					dirname( plugin_basename( __FILE__ ), 2 ) . '/languages/'
 				);
 			}
 		);

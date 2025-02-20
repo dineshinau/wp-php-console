@@ -3,7 +3,7 @@
  * Plugin Name:  WP PHP Console (Forked for wpd)
  * Plugin URI:   https://github.com/unfulvio/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
- * Version:      9.9.13
+ * Version:      9.9.15
  * Author:       Fulvio Notarstefano
  * Author URI:   https://github.com/unfulvio/
  *
@@ -267,5 +267,5 @@ class WP_PHP_Console_Loader {
 	}
 }
 
-// initialize the plugin loader
+// initialize the plugin loader.
 WP_PHP_Console_Loader::instance();

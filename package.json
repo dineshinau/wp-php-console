@@ -1,0 +1,12 @@
+{
+	"name": "wp-php-console",
+	"version": "9.9.15",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"check-engines": "wp-scripts check-engines",
+		"phpcbf": "cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore-annotations --extensions=php,html $INIT_CWD/",
+		"phpcs": "mkdir -p phpcs-reports && cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcs --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore=*/wk_caching/* --report-source --report-xml=$INIT_CWD/phpcs-reports/phpcs-report-$(date \"+%Y-%m-%dT%H:%M:%S\").xml --ignore-annotations --extensions=php,html $INIT_CWD/",
+		"make-pot": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot --exclude=\"node_modules/,languages/,.gitignore,.git,.webpack.config.js,package.json,license.txt,readme.txt,assets/,$npm_package_name/\" --headers='{\"Report-Msgid-Bugs-To\":\"https://wordpress.org/support/plugin/wp-php-console/\", \"language-team\":\"LANGUAGE <EMAIL@ADDRESS>\"}' . languages/wp-php-console.pot",
+		"zip": "npm run make-pot && mkdir -p $npm_package_name && cp -r languages/ src/ vendor/ readme.txt uninstall.php $npm_package_name.php $npm_package_name && zip -r $npm_package_name.zip $npm_package_name && rm -r $npm_package_name"
+	}
+}

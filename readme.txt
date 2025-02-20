@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: dev, development, bug, debug, debugging, stacktrace, php, console, terminal, browser
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.6
+Tested up to: 6.5
 PHP up to: 8.3
 Stable tag: 9.9.13
 License: GPLv3 or later
@@ -127,6 +127,12 @@ or
 None.
 
 == Changelog ==
+
+= 9.9.15 (2025-02-19) =
+Fixed: Deprecated notice with PHP-8.4
+
+= 9.9.14 (2024-11-29) =
+Fixed: Text domain loading on init instead of plugins_loaded.
 
 = 9.9.13 (2024-05-09) =
 Renamed: wppcd function to wpd for simplicity.
