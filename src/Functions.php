@@ -7,13 +7,10 @@
  * It is also available through the world-wide-web at this URL:
  * http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @author    Fulvio Notarstefano <fulvio.notarstefano@gmail.com>
- * @copyright Copyright (c) 2014-2020 Fulvio Notarstefano
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ * @package WP_PHP_Console
  */
 
 defined( 'ABSPATH' ) or exit;
-
 
 /**
  * Gets the WP PHP Console instance.
@@ -23,6 +20,19 @@ defined( 'ABSPATH' ) or exit;
  * @return WP_PHP_Console\Plugin
  */
 function wp_php_console() {
-
 	return new \WP_PHP_Console\Plugin();
+}
+
+/**
+ * WordPress PC debugging function.
+ *
+ * @param mixed $data Data that needs to add to debug.
+ * @param null  $tags              Tags for the debug message.
+ * @param int   $ignoreTraceCalls  Number of trace calls to ignore.
+ */
+function wpd( $data, $tags = null, $ignoreTraceCalls = 0 ) {
+	if ( ! class_exists( 'PC' ) ) {
+		PhpConsole\Helper::register();
+	}
+	PC::debug( $data, $tags, $ignoreTraceCalls );
 }

@@ -88,9 +88,9 @@ module.exports = function( grunt ) {
 						poedit                 : true,
 						'x-poedit-keywordslist': true,
 						'language'             : 'en_US',
-						'report-msgid-bugs-to' : 'https://github.com/unfulvio/wp-php-console',
-						'last-translator'      : 'Fulvio Notarstefano <fulvio.notarstefano@gmail.com>',
-						'language-Team'        : 'Fulvio Notarstefano <fulvio.notarstefano@gmail.com>'
+						'report-msgid-bugs-to' : 'https://github.com/dineshinau/wp-php-console',
+						'last-translator'      : 'Dinesh Yadav <[dineshinau@gmail.com]>',
+						'language-Team'        : 'Dinesh Yadav <[dineshinau@gmail.com]>'
 					},
 					type           : 'wp-plugin',
 					updateTimestamp: true,

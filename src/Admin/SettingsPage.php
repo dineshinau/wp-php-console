@@ -7,9 +7,7 @@
  * It is also available through the world-wide-web at this URL:
  * http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @author    Fulvio Notarstefano <fulvio.notarstefano@gmail.com>
- * @copyright Copyright (c) 2014-2020 Fulvio Notarstefano
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ * @package WP_PHP_Console
  */
 
 namespace WP_PHP_Console\Admin;
@@ -25,17 +23,26 @@ defined( 'ABSPATH' ) or exit;
  * @since 1.6.0
  */
 class SettingsPage {
-
-
-	/** @var string the plugin's settings page slug */
+	/**
+	 * The plugin's settings page slug.
+	 *
+	 * @var string
+	 */
 	private $page_id;
 
-	/** @var string the plugin's settings option key name */
+	/**
+	 * The plugin's settings option key name.
+	 *
+	 * @var string
+	 */
 	private $option_key;
 
-	/** @var array settings options */
+	/**
+	 * Settings options.
+	 *
+	 * @var array
+	 */
 	private $options;
-
 
 	/**
 	 * Registers settings and admin menu.
@@ -43,15 +50,23 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	public function __construct() {
-
 		$this->page_id    = str_replace( '-', '_', Plugin::ID );
 		$this->option_key = Settings::get_settings_key();
 		$this->options    = Settings::get_settings();
 
-		add_action( 'admin_menu', function() { $this->register_settings_page(); } );
-		add_action( 'admin_init', function() { $this->register_settings(); } );
+		add_action(
+			'admin_menu',
+			function () {
+				$this->register_settings_page();
+			}
+		);
+		add_action(
+			'admin_init',
+			function () {
+				$this->register_settings();
+			}
+		);
 	}
-
 
 	/**
 	 * Adds a plugin Settings menu.
@@ -65,10 +80,9 @@ class SettingsPage {
 			Plugin::NAME,
 			'manage_options',
 			$this->page_id,
-			[ $this, 'output_settings_page' ]
+			array( $this, 'output_settings_page' )
 		);
 	}
-
 
 	/**
 	 * Registers the plugin settings.
@@ -76,78 +90,76 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	private function register_settings() {
-
 		register_setting(
 			$this->option_key,
 			$this->option_key,
-			[ $this, 'sanitize_field' ]
+			array( $this, 'sanitize_field' )
 		);
 
 		add_settings_section(
 			$this->option_key,
 			__( 'Settings', 'wp-php-console' ),
-			[ $this, 'output_settings_instructions' ],
+			array( $this, 'output_settings_instructions' ),
 			$this->page_id
 		);
 
-		$settings_fields = [
-			'password' => [
+		$settings_fields = array(
+			'password' => array(
 				'label' => esc_html__( 'Password', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'       => 'password',
 					'type'     => 'password',
 					'required' => true,
-				]
-			],
-			'ssl' => [
+				),
+			),
+			'ssl'      => array(
 				'label' => esc_html__( 'Allow only on SSL', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'   => 'ssl',
 					'type' => 'checkbox',
-				]
-			],
-			'ip' => [
+				),
+			),
+			'ip'       => array(
 				'label' => esc_html__( 'Allowed IP Masks', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'   => 'ip',
 					'type' => 'text',
-				]
-			],
-			'register' => [
+				),
+			),
+			'register' => array(
 				'label' => esc_html__( 'Register PC Class', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'   => 'register',
 					'type' => 'checkbox',
-				]
-			],
-			'stack' => [
+				),
+			),
+			'stack'    => array(
 				'label' => esc_html__( 'Show Call Stack', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'   => 'stack',
 					'type' => 'checkbox',
-				]
-			],
-			'short' => [
+				),
+			),
+			'short'    => array(
 				'label' => esc_html__( 'Short Path Names', 'wp-php-console' ),
-				'args'  => [
+				'args'  => array(
 					'id'   => 'short',
 					'type' => 'checkbox',
-				]
-			],
-		];
+				),
+			),
+		);
 
 		foreach ( $settings_fields as $key => $field ) {
 			add_settings_field(
-				$this->page_id . '['. $key . ']',
+				$this->page_id . '[' . $key . ']',
 				$field['label'],
-				[ $this, 'output_input_field' ],
+				array( $this, 'output_input_field' ),
 				$this->page_id,
 				$this->option_key,
 				$field['args']
 			);
 		}
 	}
-
 
 	/**
 	 * Outputs settings page additional info.
@@ -159,19 +171,21 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	public function output_settings_instructions() {
-
 		?>
-		<p><?php printf(
+		<p>
+		<?php
+		printf(
 				/* translators: Placeholder: %s refers to the PHP Console library, pointing to its GitHub repository */
-				_x( 'This plugin allows you to use %s within your WordPress installation for testing, debugging and development purposes.', 'PHP Console, the PHP Library', 'wp-php-console' ),
-				'<a href="' . esc_url( Plugin::get_php_console_repository_url() ) . '" target="_blank">PHP Console</a>'
-			);
-		?></p>
+			_x( 'This plugin allows you to use %s within your WordPress installation for testing, debugging and development purposes.', 'PHP Console, the PHP Library', 'wp-php-console' ),
+			'<a href="' . esc_url( Plugin::get_php_console_repository_url() ) . '" target="_blank">PHP Console</a>'
+		);
+		?>
+		</p>
 		<h4><?php esc_html_e( 'Usage instructions:', 'wp-php-console' ); ?></h4>
 		<ol>
 			<?php
 
-			$instructions = [
+			$instructions = array(
 				sprintf(
 					/* translators: Placeholder: %s - the Google Chrome PHP Console extension download link */
 					_x( 'Make sure you have downloaded and installed the %s.', 'PHP Console, the Chrome Extension', 'wp-php-console' ),
@@ -193,10 +207,12 @@ class SettingsPage {
 					'<code>debug(&#36;var, &#36;tag)</code>',
 					'<code>CTRL+SHIFT+J</code>'
 				),
-			];
+			);
 
 			foreach ( $instructions as $list_item ) :
-				?><li><?php echo $list_item; ?></li><?php
+				?>
+				<li><?php echo $list_item; ?></li>
+				<?php
 			endforeach;
 
 			?>
@@ -205,48 +221,42 @@ class SettingsPage {
 		<?php
 	}
 
-
 	/**
 	 * Gets the field ID.
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $field field arguments
+	 * @param array $field field arguments.
 	 * @return string
 	 */
 	private function get_field_id( array $field ) {
-
 		return $this->page_id . '-' . $field['id'];
 	}
-
 
 	/**
 	 * Gets the field name.
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $field field arguments
+	 * @param array $field field arguments.
 	 * @return string
 	 */
 	private function get_field_name( array $field ) {
-
 		return str_replace( '-', '_', $this->page_id . '[' . $field['id'] . ']' );
 	}
-
 
 	/**
 	 * Gets the field current value.
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $field field arguments
+	 * @param array $field field arguments.
+	 *
 	 * @return int|string|bool
 	 */
 	private function get_field_value( array $field ) {
-
 		return $this->options[ $field['id'] ];
 	}
-
 
 	/**
 	 * Outputs an input field.
@@ -255,35 +265,32 @@ class SettingsPage {
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $args
+	 * @param array $args Field arguments.
 	 */
-	public function output_input_field( array $args = [] ) {
-
+	public function output_input_field( array $args = array() ) {
 		if ( empty( $args ) ) {
 			return;
 		}
 
 		switch ( $args['type'] ) {
-			case 'password' :
-			case 'text' :
+			case 'password':
+			case 'text':
 				$this->output_input_text_field( $args );
 				break;
-			case 'checkbox' :
+			case 'checkbox':
 				$this->output_checkbox_field( $args );
-			break;
+				break;
 		}
 	}
-
 
 	/**
 	 * Outputs a text input field.
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $args
+	 * @param array $args Field arguments.
 	 */
-	private function output_input_text_field( $args = [] ) {
-
+	private function output_input_text_field( $args = array() ) {
 		?>
 		<label>
 			<input
@@ -299,18 +306,15 @@ class SettingsPage {
 		<?php
 
 		switch ( $args['id'] ) :
-
-			case 'ip' :
+			case 'ip':
 				$this->output_ip_field_instructions();
 				break;
 
-			case 'password' :
+			case 'password':
 				$this->output_password_field_instructions();
 				break;
-
 		endswitch;
 	}
-
 
 	/**
 	 * Outputs the "Password" field instructions.
@@ -318,12 +322,10 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	private function output_password_field_instructions() {
-
 		?>
 		<p class="description"><?php esc_html_e( 'The password for the eval terminal. If empty, the connector will not work.', 'wp-php-console' ); ?></p>
 		<?php
 	}
-
 
 	/**
 	 * Outputs the "IP range" field instructions.
@@ -331,36 +333,41 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	private function output_ip_field_instructions() {
-
 		?>
 		<p class="description"><?php esc_html_e( 'You may specify any of the following, to give access to specific IPs to the eval terminal:', 'wp-php-console' ); ?></p>
 		<ol>
-			<li><span class="description"><?php printf(
+			<li><span class="description">
+			<?php
+			printf(
 					/* translators: Placeholders: %1$s - a single IP address, %2$s link to Varying Vagrant Vagrants project repository */
-					__( 'An IP address (for example %1$s, %2$s default IP address).', 'wp-php-console' ),
-					'<code>192.168.50.4</code>',
-					'<a href="https://github.com/Varying-Vagrant-Vagrants/VVV">Varying Vagrant Vagrants</a>'
-				); ?></span></li>
-			<li><span class="description"><?php printf(
+				__( 'An IP address (for example %1$s, %2$s default IP address).', 'wp-php-console' ),
+				'<code>192.168.50.4</code>',
+				'<a href="https://github.com/Varying-Vagrant-Vagrants/VVV">Varying Vagrant Vagrants</a>'
+			);
+			?>
+				</span></li>
+			<li><span class="description">
+			<?php
+			printf(
 					/* translators: Placeholders: %1$s a range of IP addresses, %2$s - comma separated IP addresses */
-					__( 'A range of addresses (%1$s) or multiple addresses, comma separated (%2$s).', 'wp-php-console' ),
-					'<code>192.168.*.*</code>',
-					'<code>192.168.10.25,192.168.10.28</code>'
-				); ?></span></li>
+				__( 'A range of addresses (%1$s) or multiple addresses, comma separated (%2$s).', 'wp-php-console' ),
+				'<code>192.168.*.*</code>',
+				'<code>192.168.10.25,192.168.10.28</code>'
+			);
+			?>
+				</span></li>
 		</ol>
 		<?php
 	}
-
 
 	/**
 	 * Outputs a checkbox input field.
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $args
+	 * @param array $args Field arguments.
 	 */
-	public function output_checkbox_field( array $args = [] ) {
-
+	public function output_checkbox_field( array $args = array() ) {
 		$field_id = esc_attr( $this->get_field_id( $args ) );
 
 		?>
@@ -376,26 +383,23 @@ class SettingsPage {
 		<?php
 
 		switch ( $args['id'] ) :
-
-			case 'register' :
+			case 'register':
 				$this->output_register_pc_class_field_instructions();
 				break;
 
-			case 'short' :
+			case 'short':
 				$this->output_show_short_paths_field_instructions();
 				break;
 
-			case 'ssl' :
+			case 'ssl':
 				$this->output_ssl_field_instructions();
 				break;
 
-			case 'stack' :
+			case 'stack':
 				$this->output_show_call_stack_field_instructions();
 				break;
-
 		endswitch;
 	}
-
 
 	/**
 	 * Outputs the "SSL option" field instructions.
@@ -409,16 +413,15 @@ class SettingsPage {
 		<?php
 	}
 
-
 	/**
 	 * Outputs the "Register PC class" field instructions.
 	 *
 	 * @since 1.6.0
 	 */
 	private function output_register_pc_class_field_instructions() {
-
 		?>
-		<p class="description"><?php
+		<p class="description">
+		<?php
 			esc_html_e( 'Enable to register PC class in the global namespace.', 'wp-php-console' );
 			echo '<br>';
 			printf(
@@ -427,10 +430,11 @@ class SettingsPage {
 				'<code>PC::debug(&#36;var, &#36;tag)</code>',
 				'<code>PC::magic_tag(&#36;var)</code>',
 				'<code>&#36;var</code>'
-			); ?></p>
+			);
+		?>
+			</p>
 		<?php
 	}
-
 
 	/**
 	 * Outputs the "Show Call Stack" field instructions.
@@ -438,12 +442,10 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	private function output_show_call_stack_field_instructions() {
-
 		?>
 		<p class="description"><?php esc_html_e( 'Enable to see the full call stack when PHP Console writes to the browser JavaScript console.', 'wp-php-console' ); ?></p>
 		<?php
 	}
-
 
 	/**
 	 * Outputs the "Show Short Paths" field field instructions.
@@ -451,9 +453,9 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	private function output_show_short_paths_field_instructions() {
-
 		?>
-		<p class="description"><?php
+		<p class="description">
+		<?php
 			esc_html_e( 'Enable to shorten the length of PHP Console error sources and traces paths in browser JavaScript console for better readability.', 'wp-php-console' );
 			echo '<br>';
 			printf(
@@ -461,10 +463,11 @@ class SettingsPage {
 				__( 'Paths like %1$s will be displayed as %2$s', 'wp-php-console' ),
 				'<code>/server/path/to/document/root/WP/wp-admin/admin.php:31</code>',
 				'<code>/WP/wp-admin/admin.php:31</code>'
-			); ?></p>
+			);
+		?>
+			</p>
 		<?php
 	}
-
 
 	/**
 	 * Sanitizes user input in the settings page.
@@ -473,30 +476,31 @@ class SettingsPage {
 	 *
 	 * @since 1.6.0
 	 *
-	 * @param array $option user input
+	 * @param array $option user input.
 	 * @return array sanitized input
 	 */
 	public function sanitize_field( $option ) {
+		$input = wp_parse_args(
+			$option,
+			array(
+				'ip'       => '',
+				'password' => '',
+				'register' => false,
+				'short'    => false,
+				'ssl'      => false,
+				'stack'    => false,
+			)
+		);
 
-		$input = wp_parse_args( $option, [
-			'ip'       => '',
-			'password' => '',
-			'register' => false,
-			'short'    => false,
-			'ssl'      => false,
-			'stack'    => false,
-		] );
-
-		return [
+		return array(
 			'ip'       => sanitize_text_field( $input['ip'] ),
 			'password' => sanitize_text_field( $input['password'] ),
 			'register' => ! empty( $input['register'] ),
 			'short'    => ! empty( $input['short'] ),
 			'ssl'      => ! empty( $input['ssl'] ),
 			'stack'    => ! empty( $input['stack'] ),
-		];
+		);
 	}
-
 
 	/**
 	 * Outputs the settings page.
@@ -506,25 +510,18 @@ class SettingsPage {
 	 * @since 1.6.0
 	 */
 	public function output_settings_page() {
-
 		?>
 		<div class="wrap">
 			<h2><?php echo Plugin::NAME; ?></h2>
 			<hr />
 			<form method="post" action="options.php">
 				<?php
-
 				settings_fields( $this->option_key );
-
 				do_settings_sections( $this->page_id );
-
 				submit_button();
-
 				?>
 			</form>
 		</div>
 		<?php
 	}
-
-
 }
