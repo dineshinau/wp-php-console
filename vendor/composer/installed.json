@@ -59,6 +59,6 @@
             "install-path": "../php-console/php-console"
         }
     ],
-    "dev": false,
+    "dev": true,
     "dev-package-names": []
 }

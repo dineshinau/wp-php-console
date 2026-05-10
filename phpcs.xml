@@ -10,8 +10,6 @@
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern>build/</exclude-pattern>
-	<exclude-pattern>modules/wk-plugin-updates/</exclude-pattern>
-	<exclude-pattern>wk_caching/</exclude-pattern>
 	<exclude-pattern>playwright-report/</exclude-pattern>
 
 	<!-- ==========================================================
@@ -81,7 +79,6 @@
 	<rule ref="WordPress.WP.Capabilities">
 		<properties>
 			<property name="custom_capabilities" type="array">
-				<element value="wk_marketplace_seller"/>
 				<element value="manage_woocommerce"/>
 				<element value="delete_published_products"/>
 			</property>
