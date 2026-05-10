@@ -3,9 +3,9 @@
  * Plugin Name:  WP PHP Console (Forked for wpd)
  * Plugin URI:   https://github.com/unfulvio/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
- * Version:      2.2.0
- * Author:       Dinesh Yadav
- * Author URI:   https://github.com/dineshinau
+ * Version:      9.9.20
+ * Author:       Fulvio Notarstefano
+ * Author URI:   https://github.com/unfulvio/
  *
  * Text Domain:  wp-php-console
  * Domain Path:  /languages
@@ -15,6 +15,11 @@
  * Requires PHP: 7.4
  *
  * WP PHP Console
+ * Copyright (c) 2014-2020 Fulvio Notarstefano <fulvio.notarstefano@gmail.com>
+ * and contributors https://github.com/unfulvio/wp-php-console/graphs/contributors
+ *
+ * PHP Console server library
+ * Copyright (c) 2011-2020 by Barbushin Sergey <barbushin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3 or, at
@@ -48,10 +53,11 @@ class WP_PHP_Console_Loader {
 	const MINIMUM_PHP_VERSION = '7.4';
 
 	/** Minimum WordPress version required by this plugin */
-	const MINIMUM_WP_VERSION = '6.8';
+	const MINIMUM_WP_VERSION = '6.0';
 
 	/** The plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WP PHP Console';
+
 
 	/**
 	 * Single instance of this class.
@@ -93,7 +99,7 @@ class WP_PHP_Console_Loader {
 	 * @since 1.5.4
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot clone instances of %s.', get_class( $this ) ), '2.0.0' );
+		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot clone instances of %s.', get_class( $this ) ), '1.5.4' );
 	}
 
 	/**
@@ -102,7 +108,7 @@ class WP_PHP_Console_Loader {
 	 * @since 1.5.4
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot unserialize instances of %s.', get_class( $this ) ), '2.0.0' );
+		_doing_it_wrong( __FUNCTION__, sprintf( 'You cannot unserialize instances of %s.', get_class( $this ) ), '1.5.4' );
 	}
 
 	/**

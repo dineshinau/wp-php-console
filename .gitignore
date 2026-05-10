@@ -1,55 +1,13 @@
-### IDE ###
-# IntelliJ
-.idea/
-*.ipr
-*.iws
-out/
-.idea_modules/
-atlassian-ide-plugin.xml
-com_crashlytics_export_strings.xml
-# NetBeans
-nbproject/private/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-# Sublime
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-sftp-config.json
-
-### Dev ###
-/includes/tmp/*.*
-!/includes/tmp/index.php
-/node_modules
-package-lock.json
-/vendor
+node_modules
+.vscode
+/.vscode
+.vscode/
+settings.json
+.vs/
+phpcs-reports/
 composer.lock
-/includes/tmp
-tmp
-.tmp
-
-### Builds ###
-build/
-svn/
-release/
-
-### Log files ###
-*.log
-error_log
-access_log
-.sass-cache
-
-### OS crap ###
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-*[Tt]humbs.db
-*.Trashes
-us.stackdump
+package.lock
+package-lock.json
+stylelint.config.js
+*.zip
+phpcs.xml.dist
