@@ -1,15 +1,15 @@
-# Copyright (C) 2026 Fulvio Notarstefano
+# Copyright (C) 2026 Dinesh Yadav
 # This file is distributed under the same license as the WP PHP Console (Forked for wpd) plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP PHP Console (Forked for wpd) 9.9.20\n"
+"Project-Id-Version: WP PHP Console (Forked for wpd) 2.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-php-console/\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-08T05:23:40+00:00\n"
+"POT-Creation-Date: 2026-05-10T20:35:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "language-team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: wp-php-console.php
-msgid "https://github.com/unfulvio/wp-php-console/"
+msgid "https://github.com/dineshinau/wp-php-console/"
 msgstr ""
 
 #. Description of the plugin
@@ -32,12 +32,12 @@ msgstr ""
 
 #. Author of the plugin
 #: wp-php-console.php
-msgid "Fulvio Notarstefano"
+msgid "Dinesh Yadav"
 msgstr ""
 
 #. Author URI of the plugin
 #: wp-php-console.php
-msgid "https://github.com/unfulvio/"
+msgid "https://github.com/dineshinau"
 msgstr ""
 
 #. translators: Placeholders: %1$s - WP PHP Console name, %2$s - opening HTML <a> link tag; %3$s closing HTML </a> link tag

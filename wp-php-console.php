@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  WP PHP Console (Forked for wpd)
- * Plugin URI:   https://github.com/unfulvio/wp-php-console/
+ * Plugin URI:   https://github.com/dineshinau/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
  * Version:      2.2.0
  * Author:       Dinesh Yadav

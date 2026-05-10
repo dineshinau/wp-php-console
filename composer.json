@@ -1,5 +1,5 @@
 {
-	"name": "webkul/wp-php-console",
+	"name": "dineshinau/wp-php-console",
 	"description": "An implementation of PHP Console for WordPress.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0-or-later",
