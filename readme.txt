@@ -1,12 +1,12 @@
 === WP PHP Console ===
-Contributors: nekojira
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XSFHY4Y9AEH58&source=url
+Contributors: dineshinau
+Donate link: https://www.paypal.com/paypalme/dineshinau
 Tags: dev, development, bug, debug, debugging, stacktrace, php, console, terminal, browser
 Requires at least: 6.8
 Requires PHP: 7.4
 Tested up to: 7.0
 PHP up to: 8.4
-Stable tag: 9.9.20
+Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,24 +15,22 @@ Use Chrome Dev Tools to debug your WordPress installation!
 
 == Description ==
 
-> PHP Console allows you to handle PHP errors & exceptions, dump variables, execute PHP code remotely and many other things using [Google Chrome extension PHP Console](https://chrome.google.com/webstore/detail/php-console/nfhmhhlpfleoednkpnnnkolmclajemef) and [PHP Console server library](https://github.com/barbushin/php-console).
+> PHP Console allows you to handle PHP errors & exceptions, dump variables, execute PHP code remotely and many other things using [Google Chrome extension PHP Console] (https://github.com/dineshinau/php-console-extension).
 
 This implementation of PHP Console is a handy tool to make it easier to test on the fly any WordPress specific function or class (including those introduced by your active theme and plugins!) from a terminal and inspect results, catch errors and warnings with complete call stack trace straight from the Chrome JavaScript console. In other words, besides debugging, you can execute PHP or WordPress-specific PHP code straight from the terminal and print PHP variables in Chrome Dev Tools JavaScript console along with your normal JavaScript debugging and testing. Keep everything in one place, without leaving the browser to check for your logs or writing temporary PHP test code on a PHP file and refresh your browser page.
 
 Note: PHP version 7.4 or above is required to use this plugin.
 
-For support and pull requests, please refer to [WP PHP Console GitHub repo](https://github.com/unfulvio/wp-php-console) and read the instructions there - thank you.
+For support and pull requests, please refer to [WP PHP Console GitHub repo](https://github.com/dineshinau/wp-php-console) and read the instructions there - thank you.
 
 == Installation ==
 
-1. First, install [Google Chrome extension PHP Console](https://chrome.google.com/webstore/detail/php-console/nfhmhhlpfleoednkpnnnkolmclajemef) from the [Chrome WebStore](https://chrome.google.com/webstore/search/php%20console?_category=extensions).
+1. First, install [Google Chrome extension PHP Console](https://github.com/dineshinau/php-console-extension).
 Make sure the PHP Console Chrome extension is enabled through [chrome://extensions/](chrome://extensions/ "chrome://extensions/").
     **Important Note**
-    If the Google Chrome extension is not available on the Chrome Web Store, you can manually install it [from source](https://github.com/barbushin/php-console-extension).
+    If the Google Chrome extension is not available on the Chrome Web Store, you can manually install it [from source](https://github.com/dineshinau/php-console-extension).
 
 2. Then, add this plugin to your WordPress installation either by:
-
-  - Installing it as any other WordPress plugin from your WordPress admin Plugins page (`Add New`)
 
   - Uploading it in `wp-php-console` directory into your `wp-content/plugins/` directory or corresponding plugins directory in your installation
 
@@ -54,6 +52,7 @@ You can secure your server by specifying IP addresses to restrict the accessibil
 
 **Register PC Class**
 Tick this option to register `PC` in the global PHP namespace. This allows to write `PC::debug($var, $tag)` or `PC::magic_tag($var)` instructions in PHP to inspect `$var` in the JavaScript console.
+Use function `wpd` for adding variables to console.
 
 **Show Call Stack**
 Tick this option to see the call stack when PHP Console server writes to the JavaScript console.
@@ -106,6 +105,10 @@ You could move your debug code or either do something like
   add_action( 'plugins_loaded', function () use ( $my_var ) {
     // send $my_var with tag 'my_tag' to the JavaScript console through PHP Console Server Library and PHP Console Chrome Plugin
     PC::my_tag( $my_var );
+
+    OR
+
+    wpd ( $my_var );
   });
 `
 
@@ -128,37 +131,36 @@ None.
 
 == Changelog ==
 
-= 9.9.20 (2026-04-08) =
+= 2.0.0 (2026-04-08) =
 Fixed: PHPCS issues according to version 4.0
 Added: Compatibility with WordPress 7.0
 Added: Compatibility with latest chrome extension 4.0 i.e. manifest version 3
 Updated: Minimum required PHP version to 7.4
 
-
-= 9.9.16 (2025-05-06) =
+= 1.6.8 (2025-05-06) =
 Added: Missing vendor folder excluded from .gitignore.
 
-= 9.9.15 (2025-02-19) =
+= 1.6.7 (2025-02-19) =
 Fixed: Deprecated notice with PHP-8.4
 
-= 9.9.14 (2024-11-29) =
+= 1.6.6 (2024-11-29) =
 Fixed: Text domain loading on init instead of plugins_loaded.
 
-= 9.9.13 (2024-05-09) =
+= 1.6.5 (2024-05-09) =
 Renamed: wppcd function to wpd for simplicity.
 
-= 9.9.12 (2024-01-07) =
+= 1.6.4 (2024-01-07) =
  * Updated: Pot file and Changelog.
  * Ran PCPCBF to fix formating issues.
  * Updated the cookie variable name with underscore instead of hypens to avoid notices with php 8 versions.
 
-= 9.9.11 (2023-12-28) =
+= 1.6.3 (2023-12-28) =
  * Fixed: Notice with setcookie method expire parameter on php-8.3 instances.
 
- = 9.9.10 (2023-11-28) =
+ = 1.6.2 (2023-11-28) =
  * Fixed: Compatibility notices with php 8.1 and php 8.2
 
-= 9.9.9 =
+= 1.6.1 =
  * Added: wppcd function to debug variables.
 
 = 1.6.0 =
@@ -250,6 +252,9 @@ Renamed: wppcd function to wpd for simplicity.
 
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Chrome extension has been upgraded to menifest version 3. Please update your chrome extension to use new version of WP PHP Console plugin.
 
 = 1.5.0 =
 * If you were extending or using public methods and properties of the plugin main class, you may have to do some changes in your code.
