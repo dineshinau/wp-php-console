@@ -1,23 +1,15 @@
 {
-  "name": "dineshinau/wp-php-console",
-  "description": "A WordPress implementation of PHP Console.",
-  "type": "wordpress-plugin",
-  "version": "2.0.0",
-  "keywords": ["wordpress", "debug", "debugging", "development", "php-console", "console", "terminal", "command-line", "cli" ],
-  "homepage": "https://github.com/dineshinau/wp-php-console",
-  "license": "GPLv3.0+",
-  "authors": [
-    {
-      "name": "Dinesh Yadav",
-      "email": "[dineshinau@gmail.com]",
-      "homepage": "https://github.com/dineshinau",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php-console/php-console": "3.1.8"
-  },
-  "require-dev": {
-    "lucatume/wp-browser": "2.2.7"
-  }
+	"name": "webkul/wp-php-console",
+	"description": "An implementation of PHP Console for WordPress.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"require": {
+		"php": ">=7.4",
+		"php-console/php-console": "^3.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"WP_PHP_Console\\": "src/"
+		}
+	}
 }
