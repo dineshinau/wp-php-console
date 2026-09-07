@@ -1,6 +1,6 @@
 {
 	"name": "wp-php-console",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"scripts": {
     "run_composer": "composer install",
 		"phpcbf": "cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore-annotations --extensions=php,html $INIT_CWD/",

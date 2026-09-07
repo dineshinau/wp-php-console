@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '201bad48a660b343d8f08740739ad38e51626cfb',
+        'reference' => '537f4bb885d6eda9720a6e1f41ad9f369f8593c3',
         'name' => 'dineshinau/wp-php-console',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '201bad48a660b343d8f08740739ad38e51626cfb',
+            'reference' => '537f4bb885d6eda9720a6e1f41ad9f369f8593c3',
             'dev_requirement' => false,
         ),
         'php-console/php-console' => array(

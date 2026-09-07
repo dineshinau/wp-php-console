@@ -2,11 +2,11 @@
 Contributors: dineshinau
 Donate link: https://www.paypal.com/paypalme/dineshinau
 Tags: dev, development, bug, debug, debugging, stacktrace, php, console, terminal, browser
-Requires at least: 6.8
+Requires at least: 6.5
 Requires PHP: 7.4
-Tested up to: 7.0
+Tested up to: 7.1
 PHP up to: 8.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -130,6 +130,8 @@ or
 None.
 
 == Changelog ==
+= 2.0.1 (2026-09-08) =
+Fixed: PHPCS issues according to version 4.1
 
 = 2.0.0 (2026-04-08) =
 Fixed: PHPCS issues according to version 4.0
