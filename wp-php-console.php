@@ -3,15 +3,15 @@
  * Plugin Name:  WP PHP Console (Forked for wpd)
  * Plugin URI:   https://github.com/dineshinau/wp-php-console/
  * Description:  An implementation of PHP Console for WordPress. Easily debug and trace PHP errors and warnings from your Chrome dev tools console using a Google Chrome extension.
- * Version:      2.2.0
+ * Version:      2.0.1
  * Author:       Dinesh Yadav
  * Author URI:   https://github.com/dineshinau
  *
  * Text Domain:  wp-php-console
  * Domain Path:  /languages
  *
- * Requires at least: 6.8
- * Tested up to: 7.0
+ * Requires at least: 6.5
+ * Tested up to: 7.1
  * Requires PHP: 7.4
  *
  * WP PHP Console
@@ -36,7 +36,7 @@
  * @package WP_PHP_Console
  */
 
-defined( 'ABSPATH' ) or exit;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * WP PHP Console loader.
@@ -48,7 +48,7 @@ class WP_PHP_Console_Loader {
 	const MINIMUM_PHP_VERSION = '7.4';
 
 	/** Minimum WordPress version required by this plugin */
-	const MINIMUM_WP_VERSION = '6.8';
+	const MINIMUM_WP_VERSION = '6.5';
 
 	/** The plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WP PHP Console';
@@ -73,7 +73,6 @@ class WP_PHP_Console_Loader {
 	 * @since 1.5.4
 	 */
 	protected function __construct() {
-
 		register_activation_hook( __FILE__, array( $this, 'activation_check' ) );
 
 		add_action( 'admin_init', array( $this, 'check_environment' ) );
